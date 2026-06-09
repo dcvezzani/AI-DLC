@@ -2,7 +2,35 @@
 
 **Not using GitHub for issue tracking?** See **[ISSUE-TRACKER-PORTABILITY.md](ISSUE-TRACKER-PORTABILITY.md)** and declare your system in the app repo’s **`AGENTS.md`**. This file is the **GitHub-specific** transport path; phase skills (`/plan`, `/design`, …) read **`AGENTS.md`** when present.
 
-This guide is for teams that use a **GitHub Project (classic)** board: **columns** map to AIDLC phases, and **labels** `aidlc_work:*` say whether a **Claude Code** (or other) run should pick up the issue. It complements [INSTALL.md](INSTALL.md) and assumes each consumer repo vendors [AIDLC.md](https://github.com/queen-of-code/external-brain/blob/main/AIDLC.md) (or your fork) at `docs/AIDLC.md`.
+---
+
+## Automation tiers (pick your depth)
+
+| Tier | Pattern | When to use |
+|------|---------|-------------|
+| **A — Recommended queue** | Projects v2 + merge advance + PR-open review + `/aidlc-launch` + ship-after-deploy; **no cron** | Production headless Cursor teams — templates in [`GITHUB-AIDLC-QUEUE.md`](GITHUB-AIDLC-QUEUE.md) |
+| **B — Minimal starter** | [`aidlc-agent-launch.yml`](templates/github-workflows/aidlc-agent-launch.yml), [`aidlc-phase-advance.yml`](templates/github-workflows/aidlc-phase-advance.yml), [`aidlc-project-label-sync.yml`](templates/github-workflows/aidlc-project-label-sync.yml) | First integration; label + manual dispatch |
+| **C — Legacy (below)** | Classic Projects columns + Mac `launchd` cron | Reference only; classic `project_card` |
+
+### Tier A — Projects v2 queue (included in v1.0.0)
+
+Full setup: **[GITHUB-AIDLC-QUEUE.md](GITHUB-AIDLC-QUEUE.md)**. Copy workflow templates from [`docs/templates/github-workflows/`](templates/github-workflows/).
+
+Key behaviors:
+
+- **`AIDLC_PHASE_FIELD_NAME`** — Projects v2 single-select (default `AIDLC phase`)
+- **`aidlc_work:in_progress`** — mutex; blocks duplicate agent launches
+- **PR merge** → advance phase + dispatch next agent (Ship waits for deploy CI)
+- **PR opened** → optional Build→Review without CI wait
+- **`/aidlc-launch`** on issue — manual board drag substitute
+- **Manual reconcile only** — no scheduled cron
+- **Learn not in Actions** — run **`/learn`** after Validate PASS
+
+---
+
+## Tier C — Classic Projects + cron (legacy body)
+
+This section is for teams that use a **GitHub Project (classic)** board: **columns** map to AIDLC phases, and **labels** `aidlc_work:*` say whether a **Claude Code** (or other) run should pick up the issue. It complements [INSTALL.md](INSTALL.md) and assumes each consumer repo vendors **`docs/AIDLC.md`** (from [templates/AIDLC.md](templates/AIDLC.md) or your fork).
 
 **Why not Projects (new) / “v2”?**  
 [GitHub Actions `project_card` events only fire for **projects (classic)**](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#project_card). The newer Projects product uses a different model (Status fields, GraphQL) and does **not** provide the same card-move webhooks, so **automated label reset on “column change” in Actions** is not wired the way this playbook expects. If you are stuck on the new Projects UI, you typically fall back to **label-only phase signals**, **scheduled** `gh` jobs, or **manual** `aidlc_work` updates until GitHub’s automation story matches your needs.

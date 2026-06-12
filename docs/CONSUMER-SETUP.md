@@ -20,7 +20,7 @@ AGENTS.md                      # Issue tracker + UI validation environments
 ### Submodule
 
 ```bash
-git submodule add https://github.com/queen-of-code/AI-DLC.git .claude/deps/ai-dlc
+git submodule add https://github.com/dcvezzani/AI-DLC.git .claude/deps/ai-dlc
 cd .claude && ln -s deps/ai-dlc/skills skills
 ```
 

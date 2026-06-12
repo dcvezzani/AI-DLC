@@ -9,7 +9,7 @@
 ## Quick install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/queen-of-code/AI-DLC/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dcvezzani/AI-DLC/main/install.sh | bash
 ```
 
 This clones to `~/.ai-dlc` and links skills into `~/.cursor/skills` and `~/.claude/skills`.

@@ -12,7 +12,7 @@ updated_at: 2026-04-21
 
 # /plan — Plan (Product Spec)
 
-You are the **phase orchestrator** for AIDLC **Plan** (Product Spec). Ground truth is **`docs/AIDLC.md`** in the **consumer workspace** (e.g. [alexa-recipe-app](https://github.com/queen-of-code/alexa-recipe-app) `docs/AIDLC.md`).
+You are the **phase orchestrator** for AIDLC **Plan** (Product Spec). Ground truth is **`docs/AIDLC.md`** in the **consumer workspace** (e.g. [alexa-recipe-app](https://github.com/dcvezzani/alexa-recipe-app) `docs/AIDLC.md`).
 
 **Design (Tech Spec)** is a **separate** skill: **`/design`** ([skills/design/SKILL.md](../design/SKILL.md)) so a different person can own it after Product approval.
 
@@ -22,7 +22,7 @@ You are the **phase orchestrator** for AIDLC **Plan** (Product Spec). Ground tru
 
 1. Resolve **feature slug** from `$ARGUMENTS` or ask: kebab-case, stable for the life of the feature.
 2. Ensure `feature/<slug>/` exists. If empty, copy **[`product-spec-template.md`](../spec-management/templates/product-spec-template.md)** → `product-spec.md` (and optionally seed **`tech-spec-template.md`** → `tech-spec.md` so `/design` has a file to fill — or let `/design` create it; see [design skill](../design/SKILL.md)).
-3. **Parent work item:** Read **`AGENTS.md` → Issue tracker (AIDLC)** if the repo documents it — that is the source of truth for which system (GitHub, Linear, Jira, …) holds the Feature. Create or link the **parent** item there; its body/description must link to `feature/<slug>/`. If **`AGENTS.md` has no tracker section**, ask which system to use or follow existing queue docs (e.g. `docs/github-queue.md`). For **GitHub Projects (classic)** automation, see [GITHUB-AIDLC-PROJECT.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/GITHUB-AIDLC-PROJECT.md). For choosing a tracker or filling `AGENTS.md`, see [ISSUE-TRACKER-PORTABILITY.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/ISSUE-TRACKER-PORTABILITY.md) and **`agent-issue-tracker-setup`**.
+3. **Parent work item:** Read **`AGENTS.md` → Issue tracker (AIDLC)** if the repo documents it — that is the source of truth for which system (GitHub, Linear, Jira, …) holds the Feature. Create or link the **parent** item there; its body/description must link to `feature/<slug>/`. If **`AGENTS.md` has no tracker section**, ask which system to use or follow existing queue docs (e.g. `docs/github-queue.md`). For **GitHub Projects (classic)** automation, see [GITHUB-AIDLC-PROJECT.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-AIDLC-PROJECT.md). For choosing a tracker or filling `AGENTS.md`, see [ISSUE-TRACKER-PORTABILITY.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/ISSUE-TRACKER-PORTABILITY.md) and **`agent-issue-tracker-setup`**.
 
 ## Orchestration — Product Spec (`product-spec.md`)
 

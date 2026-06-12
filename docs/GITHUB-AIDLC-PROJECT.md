@@ -224,7 +224,7 @@ nothing in the repo for a Cloud Agent to read.
 
 ```bash
 # Add AI-DLC as a submodule
-git submodule add https://github.com/queen-of-code/AI-DLC.git .claude/deps/ai-dlc
+git submodule add https://github.com/dcvezzani/AI-DLC.git .claude/deps/ai-dlc
 
 # Create the .claude/skills symlink that prompts reference
 cd .claude && ln -s deps/ai-dlc/skills skills && cd ..
@@ -302,7 +302,7 @@ The workflow builds the actual prompt text dynamically; these files are the huma
 
 ## Links
 
-- Tutorial (manual queue): [alexa-recipe-app `docs/github-queue.md`](https://github.com/queen-of-code/alexa-recipe-app/blob/main/docs/github-queue.md)
+- Tutorial (manual queue): [alexa-recipe-app `docs/github-queue.md`](https://github.com/dcvezzani/alexa-recipe-app/blob/main/docs/github-queue.md)
 - Work tracking skill: [skills/work-tracking/SKILL.md](../skills/work-tracking/SKILL.md)
 - Actions: [`project_card` event](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#project_card) (projects **(classic)** only)
 - Actions: [`issues.labeled` event](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#issues) (personal account path)

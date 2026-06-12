@@ -3,7 +3,7 @@
 # AI-DLC installer — skills library for Cursor and Claude Code
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/queen-of-code/AI-DLC/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/dcvezzani/AI-DLC/main/install.sh | bash
 #   curl -fsSL ... | bash -s -- --force   # replace existing skill dirs/symlinks
 #
 # Or from a clone:
@@ -19,7 +19,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-REPO_URL="https://github.com/queen-of-code/AI-DLC.git"
+REPO_URL="https://github.com/dcvezzani/AI-DLC.git"
 INSTALL_DIR="$HOME/.ai-dlc"
 CURSOR_SKILLS_DIR="$HOME/.cursor/skills"
 CLAUDE_SKILLS_DIR="$HOME/.claude/skills"

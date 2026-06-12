@@ -64,6 +64,12 @@ inputs:
     description: success | failed_deploy | failed_smoke (empty = manual Ship, agent polls CI)
     required: false
     default: ''
+  cursor-model:
+    description: >
+      Cursor Cloud Agent model ID for POST /v0/agents `model` (e.g. composer-2.5).
+      Omit to use dashboard default. List models with GET /v0/models.
+    required: false
+    default: ''
 
 runs:
   using: composite
@@ -84,6 +90,7 @@ runs:
         SHIP_DEPLOY_RUN_URL: ${{ inputs.ship-deploy-run-url }}
         SHIP_SMOKE_RUN_URL: ${{ inputs.ship-smoke-run-url }}
         SHIP_CI_STATUS: ${{ inputs.ship-ci-status }}
+        CURSOR_MODEL: ${{ inputs.cursor-model }}
       with:
         github-token: ${{ inputs.github-token }}
         script: |
@@ -319,17 +326,23 @@ runs:
 
           const autoCreatePr = ['plan', 'design', 'build'].includes(phase);
           const defaultBranch = process.env.DEFAULT_BRANCH || 'main';
+          const cursorModel = (process.env.CURSOR_MODEL || '').trim();
+          const launchBody = {
+            prompt: { text: prompt },
+            source: { repository: 'https://github.com/' + REPO_FULL, ref: defaultBranch },
+            target: { autoCreatePr, openAsCursorGithubApp: autoCreatePr },
+          };
+          if (cursorModel) {
+            launchBody.model = cursorModel;
+            core.info('Cursor model: ' + cursorModel);
+          }
           const launchRes = await fetch('https://api.cursor.com/v0/agents', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': 'Basic ' + Buffer.from(process.env.CURSOR_API_KEY + ':').toString('base64'),
             },
-            body: JSON.stringify({
-              prompt: { text: prompt },
-              source: { repository: 'https://github.com/' + REPO_FULL, ref: defaultBranch },
-              target: { autoCreatePr, openAsCursorGithubApp: autoCreatePr },
-            }),
+            body: JSON.stringify(launchBody),
           });
 
           if (!launchRes.ok) {
@@ -356,5 +369,7 @@ runs:
 
           await github.rest.issues.updateComment({
             owner: OWNER, repo: REPO, comment_id: launchComment.data.id,
-            body: ':robot: **AIDLC `' + phase + '` agent is running.**\n\n[Watch it here ->](' + agentUrl + ')\n\nThe agent will post a summary and clear `aidlc_work:in_progress` when done.\n\n<!-- cursor-agent-id: ' + agent.id + ' -->',
+            body: ':robot: **AIDLC `' + phase + '` agent is running.**'
+              + (cursorModel ? '\n\nModel: `' + cursorModel + '`' : '')
+              + '\n\n[Watch it here ->](' + agentUrl + ')\n\nThe agent will post a summary and clear `aidlc_work:in_progress` when done.\n\n<!-- cursor-agent-id: ' + agent.id + ' -->',
           });

@@ -13,4 +13,4 @@ updated_at: 2026-03-07
 
 # Greeting Rule
 
-You must always address me as 'Hey Queen' at the start of every conversation and response to me. This is mandatory.
+You must always address me as 'Hey Dave' at the start of every conversation and response to me. This is mandatory.

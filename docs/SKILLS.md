@@ -107,13 +107,14 @@ Rules:
 | `build` | skill | build, test | AIDLC Build + Test (`/build`) — open PR + green CI; TDD; PR triage after `/review` |
 | `review` | skill | review, test | AIDLC Test gate + Review orchestrator (`/review`) — five PR comment dimensions |
 | `ship` | skill | validate | AIDLC Validate phase orchestrator (`/ship`) — scorecard; UI validation via INTERACTIVE-UI-VALIDATION doc |
-| `learn` | skill | validate | AIDLC Learn orchestrator (`/learn`) — after Validate PASS; ADRs, docs, retro |
+| `learn` | skill | validate | AIDLC Learn orchestrator (`/learn`) — after Validate PASS; ADRs, docs, retro, git worktree cleanup |
+| `git-worktree-cleanup` | skill | validate | Remove feature git worktree + prune local branch by slug; used by `/learn` or standalone post-merge |
 | `architecture` | skill | build, review | Apply software architecture best practices and design patterns |
 | `backend-saas` | skill | design, build | SaaS backend development patterns including API design and multi-tenancy |
 | `blog-writing` | skill | plan | Write blog posts in Melissa Benua's voice and style |
 | `frontend-web` | skill | build | Modern web development patterns for React, Vue, and vanilla JS |
 | `gdoc-to-markdown` | skill | build | Download Google Docs as markdown files to external-brain folder |
-| `git-workflow` | skill | build, test, review | Git workflow standards including commit messages and branch management |
+| `git-workflow` | skill | build, test, review, validate | Git workflow standards — commits, branches, worktree record/create conventions |
 | `greeting` | skill | plan | Personal greeting preference |
 | `mobile-apple` | skill | build | iOS and macOS development patterns using Swift and SwiftUI |
 | `report-bug` | skill | plan, design, build, test, review | Bug triage and structured report — environment, repro, exact errors, observability; conversation-first; never assumes |

@@ -1,13 +1,13 @@
 ---
 name: git-workflow
-description: Git workflow standards including commit messages, branch management, and success criteria. Use when committing code, creating branches, or preparing changes for review.
+description: Git workflow standards including commit messages, branch management, worktree lifecycle, and success criteria. Use when committing code, creating branches, preparing changes for review, or cleaning up worktrees in Learn.
 type: skill
-aidlc_phases: [build, test, review]
-tags: [git, version-control, workflow, commits, branches]
+aidlc_phases: [build, test, review, validate]
+tags: [git, version-control, workflow, commits, branches, worktree]
 requires: []
 author: Melissa Benua
 created_at: 2026-03-07
-updated_at: 2026-03-22
+updated_at: 2026-06-15
 ---
 
 # Git Workflow Standards
@@ -18,6 +18,7 @@ updated_at: 2026-03-22
 - When deciding whether to create a branch
 - Before declaring work complete
 - When preparing changes for pull requests
+- During **`/learn`** — remove feature git worktrees after merged PR (§ Worktree lifecycle)
 
 ## Branch Protection
 
@@ -125,3 +126,29 @@ Before every commit, verify:
 - [ ] Changes match the original task
 - [ ] No secrets or credentials in the commit
 - [ ] Documentation updated if needed
+
+## Worktree lifecycle (Learn)
+
+Optional pattern for **parallel Build** on child units. Single-checkout repos skip this section.
+
+### Record at Plan or Design
+
+Create `feature/<slug>/AIDLC.md` (copy from [feature/_template/AIDLC.md](../../feature/_template/AIDLC.md)) with **Worktree** (absolute path) and **Branch** rows. Consumer convention: [CONSUMER-SETUP.md](../../docs/CONSUMER-SETUP.md) § Git worktrees.
+
+### Create at Build (optional)
+
+From the main repo checkout:
+
+```bash
+git worktree add <path> -b <branch> <base-branch>
+```
+
+See [skills/build/SKILL.md](../build/SKILL.md) for PR requirements. Worktree creation is **not** required for every feature.
+
+### Discover path and branch
+
+See **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../git-worktree-cleanup/SKILL.md) § Discovery).
+
+### Remove after merged PR
+
+Run **`git-worktree-cleanup`** for the slug — typically from **`/learn`**, or standalone after merge. Full procedure, preconditions, and safety rules: [skills/git-worktree-cleanup/SKILL.md](../git-worktree-cleanup/SKILL.md).

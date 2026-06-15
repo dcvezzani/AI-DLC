@@ -69,6 +69,27 @@ For **GitHub Issues**, Product Spec links in issue bodies must use **`blob/<bran
 
 Dual-tracker pattern (common): **Linear** (or Jira) = product backlog; **GitHub Projects v2** = optional headless phase transport — link issues, do not duplicate scope.
 
+### Git worktrees (AIDLC)
+
+Optional — use when **parallel Build** runs on child units in separate checkouts. Single-checkout repos can omit this block; `/learn` will record `N/A` for worktree cleanup.
+
+**Record at Plan or Design:** copy [feature/_template/AIDLC.md](../feature/_template/AIDLC.md) to `feature/<slug>/AIDLC.md` with absolute **Worktree** path and **Branch** name.
+
+**Create at Build (optional):** `git worktree add <path> -b <branch> <base>` — see [skills/build/SKILL.md](../skills/build/SKILL.md).
+
+**Remove at Learn:** `/learn` runs **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../skills/git-worktree-cleanup/SKILL.md)) for the slug after the feature PR is merged.
+
+```markdown
+## Git worktrees (AIDLC)
+
+| Field | Value |
+|--------|--------|
+| **Parent directory** | `../<repo>-worktrees/` (sibling of repo root) |
+| **Path pattern** | `../<repo>-worktrees/<slug>` |
+| **Branch pattern** | `feature/<slug>` |
+| **Learn cleanup** | `/learn` or **`git-worktree-cleanup`** — [skills/git-worktree-cleanup/SKILL.md](../skills/git-worktree-cleanup/SKILL.md) |
+```
+
 ### UI validation environments
 
 ```markdown

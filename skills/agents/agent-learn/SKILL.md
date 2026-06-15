@@ -1,6 +1,6 @@
 ---
 name: agent-learn
-description: Captures learnings after a feature or incident completes. Updates PROJECT.md, writes or updates ADRs, adds retrospective notes to Tech Specs, and updates repo documentation so future agents start with current context.
+description: Captures learnings after a feature or incident completes. Updates PROJECT.md, writes or updates ADRs, adds retrospective notes to Tech Specs, updates repo documentation, and removes feature git worktrees after merged PRs.
 type: agent
 aidlc_phases: [validate]
 tags: [learn, documentation, adr, retrospective, project-memory, validate]
@@ -8,12 +8,13 @@ skills:
   - spec-management
   - architecture
   - git-workflow
+  - git-worktree-cleanup
 requires: []
 max_turns: 30
 timeout_seconds: 180
 author: Melissa Benua
 created_at: 2026-03-07
-updated_at: 2026-03-07
+updated_at: 2026-06-15
 ---
 
 # Learn Agent
@@ -73,6 +74,10 @@ If the feature changed how things work in ways that affect onboarding or day-to-
 
 If the AIDLC process itself had friction during this cycle, note it in a brief section at the bottom of the feature's retrospective. This feeds back into AIDLC process improvement.
 
+### 6. Git Worktree and Branch Cleanup (When Applicable)
+
+After the feature PR is **merged** and Validate has **PASS**, remove git worktrees tied to the **current/specified feature slug**. Run **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../../git-worktree-cleanup/SKILL.md)) — discovery, preconditions, commands, and safety rules live there. Record results in **`learn-notes.md`** → **Git hygiene**.
+
 ## Output Format
 
 The Learn agent produces a single commit (or PR) containing all documentation updates. The commit message follows the convention:
@@ -87,3 +92,4 @@ docs(learn): capture learnings from Feature #<N> — <title>
 - A new agent starting a session and reading only PROJECT.md would have enough context to understand what exists, where it runs, and what decisions were made
 - No stale information remains from before the feature was implemented
 - ADRs, if written, are self-contained and don't require reading the full PR history to understand
+- Git hygiene is completed or explicitly documented as N/A / skipped with reason in learn-notes

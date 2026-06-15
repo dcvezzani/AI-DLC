@@ -2,6 +2,21 @@
 
 All notable changes to the AI-DLC skills and docs library.
 
+## [Unreleased]
+
+### Added
+
+- **`skills/git-worktree-cleanup/SKILL.md`** — standalone skill: remove worktree + prune branch by feature slug
+- **`feature/_template/AIDLC.md`** — Branch + Worktree metadata for parallel Build and Learn cleanup
+- **Git worktree cleanup in `/learn`** — `skills/learn/SKILL.md`, `skills/agents/agent-learn/SKILL.md`, `skills/git-workflow/SKILL.md` § Worktree lifecycle
+- **`docs/CONSUMER-SETUP.md`** § Git worktrees (AIDLC) — optional `AGENTS.md` block and conventions
+
+### Changed
+
+- **`docs/templates/AIDLC.md`** — Learn responsibilities and success criteria include worktree/branch hygiene
+- **`skills/learn/SKILL.md`** — orchestration step 5; `requires: [git-worktree-cleanup]`
+- **`skills/git-workflow/SKILL.md`** — remove/discover delegated to `git-worktree-cleanup`
+
 ## [1.0.0] — 2026-06-09
 
 ### Added

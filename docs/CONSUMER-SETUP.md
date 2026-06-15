@@ -2,7 +2,7 @@
 
 How to **vendor** this library in an application repo and wire **tracker-agnostic** AIDLC without copying Vega-specific automation.
 
-**Related:** [ISSUE-TRACKER-PORTABILITY.md](ISSUE-TRACKER-PORTABILITY.md), [INTERACTIVE-UI-VALIDATION.md](INTERACTIVE-UI-VALIDATION.md), [templates/AIDLC.md](templates/AIDLC.md).
+**Related:** [ISSUE-TRACKER-PORTABILITY.md](ISSUE-TRACKER-PORTABILITY.md), [GITHUB-ISSUE-SPEC-LINKS.md](GITHUB-ISSUE-SPEC-LINKS.md), [INTERACTIVE-UI-VALIDATION.md](INTERACTIVE-UI-VALIDATION.md), [templates/AIDLC.md](templates/AIDLC.md).
 
 ---
 
@@ -64,6 +64,8 @@ Do **not** copy entire agent libraries into the submodule; keep specialists in t
 ### Issue tracker (AIDLC)
 
 Full template: [ISSUE-TRACKER-PORTABILITY.md](ISSUE-TRACKER-PORTABILITY.md).
+
+For **GitHub Issues**, Product Spec links in issue bodies must use **`blob/<branch>/…`** URLs — see [GITHUB-ISSUE-SPEC-LINKS.md](GITHUB-ISSUE-SPEC-LINKS.md). Add a **Notes** row in `AGENTS.md` for your default blob branch (`main` or an integration branch).
 
 Dual-tracker pattern (common): **Linear** (or Jira) = product backlog; **GitHub Projects v2** = optional headless phase transport — link issues, do not duplicate scope.
 

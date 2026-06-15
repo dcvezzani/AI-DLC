@@ -36,6 +36,7 @@ See [docs/CLAUDE-MARKETPLACE.md](docs/CLAUDE-MARKETPLACE.md).
 | [docs/GITHUB-AIDLC-QUEUE.md](docs/GITHUB-AIDLC-QUEUE.md) | **Recommended:** Projects v2 queue + Cursor workflow templates |
 | [docs/GITHUB-AIDLC-PROJECT.md](docs/GITHUB-AIDLC-PROJECT.md) | GitHub automation tiers + classic/cron legacy |
 | [docs/ISSUE-TRACKER-PORTABILITY.md](docs/ISSUE-TRACKER-PORTABILITY.md) | Declare GitHub / Linear / Jira in consumer `AGENTS.md`; setup agent |
+| [docs/GITHUB-ISSUE-SPEC-LINKS.md](docs/GITHUB-ISSUE-SPEC-LINKS.md) | Link Product Specs from GitHub issue bodies (`blob/` URLs) |
 | [AGENTS.md](AGENTS.md) | Contributor / agent instructions |
 
 ## Layout

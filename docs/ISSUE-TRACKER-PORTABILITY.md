@@ -7,7 +7,19 @@ Teams choose **where work is tracked** (GitHub Issues, **Linear**, **Jira**, etc
 - **`docs/AIDLC.md`** in the app repo (vendored or linked).
 - **`feature/<slug>/`** for Product Spec, Tech Spec, and related artifacts.
 - **Pull requests + CI** as the implementation and review vehicle (for codebases that use PRs).
-- **Parent work item** in the team’s issue tracker: body or description links to `feature/<slug>/` and the tracker issue/URL is discoverable from chat or the spec.
+- **Parent work item** in the team’s issue tracker: body or description references `feature/<slug>/` (folder path as plain text) and links to **`product-spec.md`** when the tracker supports clickable links. The tracker issue/URL is discoverable from chat or the spec.
+
+### GitHub Issues: spec links in issue bodies
+
+On **GitHub Issues**, markdown links must **not** use bare repo-relative paths like `(feature/<slug>/product-spec.md)` — GitHub resolves them under `/issues/…` and they break.
+
+Use full **`blob/<branch>/<path>`** URLs instead. See **[GITHUB-ISSUE-SPEC-LINKS.md](GITHUB-ISSUE-SPEC-LINKS.md)** for templates, `gh issue create` examples, and branch choice (`main` vs integration branch).
+
+| Context | Link style |
+|---------|------------|
+| Issue / comment body | `https://github.com/<owner>/<repo>/blob/<branch>/feature/<slug>/product-spec.md` |
+| In-repo markdown (specs, README, PR on same branch) | Relative paths OK |
+| Agent-readable path only | Backticks: `` `feature/<slug>/product-spec.md` `` |
 
 ## Pluggable (per organization)
 
@@ -89,6 +101,7 @@ The agent’s job is **not** to run proprietary APIs with your credentials blind
 
 ## Links
 
+- [GITHUB-ISSUE-SPEC-LINKS.md](GITHUB-ISSUE-SPEC-LINKS.md) — blob URLs for Product Spec links in GitHub issue bodies
 - [GITHUB-AIDLC-PROJECT.md](GITHUB-AIDLC-PROJECT.md) — GitHub automation tiers (recommended queue, minimal templates, classic legacy)
 - [CONSUMER-SETUP.md](CONSUMER-SETUP.md) — submodule, overrides, UI validation environments
 - [work-tracking skill](../skills/work-tracking/SKILL.md) — hierarchy; GitHub + Linear platform mapping (extend for Jira in your repo)

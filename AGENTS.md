@@ -13,6 +13,7 @@ Public **skills + agents** library and **Claude Code marketplace**. No orchestra
 - **Marketplaces (Claude + Cursor):** [docs/CLAUDE-MARKETPLACE.md](docs/CLAUDE-MARKETPLACE.md) — `.claude-plugin/` for Claude Code; [`.cursor-plugin/marketplace.json`](.cursor-plugin/marketplace.json) + `plugins/ai-dlc-skills/.cursor-plugin/` for Cursor team marketplace
 - **Specs & ADRs:** [skills/spec-management/templates/](skills/spec-management/templates/) — Product, Tech, ADR template, and ADR folder guidance (consumer repos store numbered files under `adr/`)
 - **Issue tracker (any vendor):** [docs/ISSUE-TRACKER-PORTABILITY.md](docs/ISSUE-TRACKER-PORTABILITY.md) — `AGENTS.md` template in **consumer** repos, **`agent-issue-tracker-setup`**
+- **GitHub issue spec links:** [docs/GITHUB-ISSUE-SPEC-LINKS.md](docs/GITHUB-ISSUE-SPEC-LINKS.md) — `blob/<branch>/…` URLs in issue bodies (not relative paths)
 - **Consumer setup:** [docs/CONSUMER-SETUP.md](docs/CONSUMER-SETUP.md) — submodule, overrides, UI validation
 - **UI validation (Chrome DevTools MCP):** [docs/INTERACTIVE-UI-VALIDATION.md](docs/INTERACTIVE-UI-VALIDATION.md) — not the Validate phase
 - **Process template:** [docs/templates/AIDLC.md](docs/templates/AIDLC.md) — vendor as `docs/AIDLC.md`

@@ -1,6 +1,6 @@
 You are running the AIDLC phase **{{PHASE}}** for repository **{{REPO}}**, issue **#{{ISSUE}}**.
 
-1. Use `gh issue view {{ISSUE}} --repo {{REPO}}` (or GitHub MCP) to load the issue body. Find `feature/<slug>/` and open or create that folder under the repo root.
+1. Use `gh issue view {{ISSUE}} --repo {{REPO}}` (or GitHub MCP) to load the issue body. Resolve the feature folder from plain-text `` `feature/<slug>/` `` (or parent/sub-feature paths). For **Product Spec**, follow **`blob/<branch>/…`** links in the issue — do not treat relative markdown links like `(feature/…/product-spec.md)` as valid URLs (see `docs/GITHUB-ISSUE-SPEC-LINKS.md` in AI-DLC). Open or create the folder under the repo root and read `product-spec.md` locally.
 
 2. Follow `docs/AIDLC.md` in the workspace for phase definitions.
 

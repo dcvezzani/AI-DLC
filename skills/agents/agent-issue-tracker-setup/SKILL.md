@@ -12,7 +12,7 @@ max_turns: 28
 timeout_seconds: 300
 author: Melissa Benua
 created_at: 2026-04-20
-updated_at: 2026-04-22
+updated_at: 2026-06-15
 ---
 
 # agent-issue-tracker-setup
@@ -38,13 +38,15 @@ You help a **consumer repository** adopt AIDLC in a way that is **issue-tracker-
 4. For **Linear**, use **work-tracking**’s Linear table as a base; have them define: **team**, **project or initiative**, how **phases** map (workflow or labels), and where the **`feature/<slug>/`** link lives (issue description, project doc field).
 5. For **Jira**, do **not** invent workflows — there is no Jira template in this repo. Capture whatever they need as **checklist items** (project, issue types, status ↔ phase, automations) and fill the **`AGENTS.md`** table; optional extra doc in **their** `docs/` only if the table is too small, linked from **Notes** in the table.
 6. **Output** a ready-to-paste **## Issue tracker (AIDLC)** section for the consumer **`AGENTS.md`**, using the basic or **extended (dual-tracker)** table from [ISSUE-TRACKER-PORTABILITY.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/ISSUE-TRACKER-PORTABILITY.md#template-copy-into-consumer-agentsmd). Fill the **Value** column from the conversation. Add **## UI validation environments** from [CONSUMER-SETUP.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/CONSUMER-SETUP.md) when the repo has a UI.
-7. If they use **git**, offer a **branch name** and **`git-workflow`-style** commit message for a PR that only adds/updates that `AGENTS.md` block (or say “paste this yourself” for non-Git flow).
+7. When **`System`** is `github-issues` (or GitHub is the orchestration tracker), add a **checklist** item: Product Spec links in issue bodies use **`blob/<branch>/…`** URLs per [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md) — not relative `(feature/…/product-spec.md)` links. Note the default blob branch (`main` or an open integration branch).
+8. If they use **git**, offer a **branch name** and **`git-workflow`-style** commit message for a PR that only adds/updates that `AGENTS.md` block (or say “paste this yourself” for non-Git flow).
 
 ## Anti-patterns
 
 - Installing webhooks or tokens **for** the user without their explicit token handling rules.
 - Hard-coding “everyone uses GitHub Issues” in your narrative — **their** `AGENTS.md` is authoritative after setup.
 - Skipping the **`AGENTS.md` block** — phase orchestrators and other agents are supposed to read it.
+- Telling users to put relative `feature/…` markdown links in **GitHub issue bodies** — those break; point to **GITHUB-ISSUE-SPEC-LINKS**.
 
 ## Success
 

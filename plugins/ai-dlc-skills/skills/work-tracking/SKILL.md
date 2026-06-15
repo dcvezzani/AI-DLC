@@ -7,7 +7,7 @@ tags: [project-management, work-tracking, linear, github, issues]
 requires: []
 author: Melissa Benua
 created_at: 2026-03-07
-updated_at: 2026-04-22
+updated_at: 2026-06-15
 ---
 
 # Work Tracking
@@ -224,7 +224,73 @@ To drive AIDLC from a **Project (classic)** board (**columns** = phases), **`aid
 
 ## Issue Templates
 
-### Parent Feature Template
+### AIDLC GitHub issue templates (recommended)
+
+Use these when creating parent Features and child work items for AIDLC. **Product Spec links must be `blob/<branch>/…` URLs** — see [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md).
+
+#### Parent Feature (GitHub)
+
+```markdown
+## Summary
+
+<Brief description of the feature and its value>
+
+## Feature folder
+
+`feature/<slug>/`
+
+- Product Spec: [product-spec.md](https://github.com/<owner>/<repo>/blob/<branch>/feature/<slug>/product-spec.md)
+
+## AIDLC phase
+
+- [ ] Plan (Product Spec)
+- [ ] Design (Tech Spec)
+- [ ] Build
+- [ ] Review
+- [ ] Ship / Validate
+- [ ] Learn
+
+## Dependencies
+
+- Depends on: #XX (if any)
+```
+
+#### Child work item (GitHub, under parent #PARENT)
+
+```markdown
+## Summary
+
+<What this child delivers>
+
+## Parent
+
+Part of [#PARENT <title>](https://github.com/<owner>/<repo>/issues/<PARENT>).
+
+## Feature folder
+
+`feature/<parent>/sub-features/<child>/`
+
+- Product Spec: [product-spec.md](https://github.com/<owner>/<repo>/blob/<branch>/feature/<parent>/sub-features/<child>/product-spec.md)
+
+## Dependencies
+
+<slug list or —>
+
+## AIDLC phase
+
+- [x] Plan (Product Spec draft)
+- [ ] Design (Tech Spec)
+- [ ] Build
+- [ ] Review
+- [ ] Ship / Validate
+- [ ] Learn
+```
+
+Replace `<owner>`, `<repo>`, `<branch>`, slugs, and issue numbers before `gh issue create`.
+
+### Generic templates (non-AIDLC or other trackers)
+
+#### Parent Feature Template
 
 ```markdown
 ## Overview
@@ -254,7 +320,7 @@ High-level technical strategy (optional for non-technical stakeholders).
 Any additional context or decisions made.
 ```
 
-### Child Work Item Template
+#### Child Work Item Template
 
 ```markdown
 ## Description

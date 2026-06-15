@@ -179,7 +179,7 @@ See also [scripts/prompts/aidlc-phase-issue.md](../scripts/prompts/aidlc-phase-i
 Record repo-specific defaults in **`AGENTS.md`**:
 
 ```markdown
-**Notes:** Spec links in GitHub issue bodies use `blob/<branch>/…` per [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/queen-of-code/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md). Default blob branch: `main` (or `feature/<integration>` while epic is open).
+**Notes:** Spec links in GitHub issue bodies use `blob/<branch>/…` per [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md). Default blob branch: `main` (or `feature/<integration>` while epic is open).
 ```
 
 Optional: copy this doc’s patterns into `docs/github-issues.md` in the consumer repo with filled owner/repo/branch.

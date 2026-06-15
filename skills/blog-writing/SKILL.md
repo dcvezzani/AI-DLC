@@ -68,7 +68,7 @@ author:
 Field notes:
 - `date`: When the post was first written
 - `updated`: When the post was last meaningfully edited (same as `date` for new posts)
-- `published_at`: List of locations where this has been published, e.g. `["queenofcode.net", "dev.to", "LinkedIn"]`. Empty list for drafts.
+- `published_at`: List of locations where this has been published, e.g. `["LinkedIn"]`. Empty list for drafts.
 - `tags`: 3-5 relevant topic tags
 - `category`: Always `blog-posts`
 

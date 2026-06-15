@@ -57,7 +57,7 @@ gcloud auth application-default login --scopes="https://www.googleapis.com/auth/
 The `.env` file in this skill directory configures the quota project:
 
 ```
-GCLOUD_QUOTA_PROJECT=queen-of-code
+GCLOUD_QUOTA_PROJECT=dcvezzani
 ```
 
 The project must have the Google Drive API enabled. Enable it at:

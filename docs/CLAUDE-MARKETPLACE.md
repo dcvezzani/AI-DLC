@@ -23,7 +23,7 @@ node scripts/validate-cursor-marketplace.mjs
 
 If that prints **Validation passed** but the Cursor **dashboard** still shows **No plugins** or a generic connection/VPN error:
 
-1. **Import URL** — Use the exact repo URL GitHub shows in the browser, including **casing**: `https://github.com/queen-of-code/AI-DLC` (repo name is **`AI-DLC`**, not `ai-dlc`). Some clients are case-sensitive when fetching `raw.githubusercontent.com` paths.
+1. **Import URL** — Use the exact repo URL GitHub shows in the browser, including **casing**: `https://github.com/dcvezzani/AI-DLC` (repo name is **`AI-DLC`**, not `ai-dlc`). Some clients are case-sensitive when fetching `raw.githubusercontent.com` paths.
 2. **Branch** — Team marketplace reads **`main`** (default branch). Confirm `.cursor-plugin/marketplace.json` exists on `main`.
 3. **Refresh** — In **Settings → Plugins → Team marketplaces**, remove the entry and **add** it again, or use **Refresh** and wait a few minutes for re-indexing.
 4. **Local check** — Symlink the plugin under `~/.cursor/plugins/local/` and reload the window (see [Plugins reference](https://cursor.com/docs/reference/plugins)) to confirm the bundle loads outside the team indexer.
@@ -46,7 +46,7 @@ Replace `/path/to/AI-DLC` with your clone path (e.g. `~/GitHub/AI-DLC`).
 Push the repo to GitHub. Others can run:
 
 ```bash
-/plugin marketplace add queen-of-code/AI-DLC
+/plugin marketplace add dcvezzani/AI-DLC
 /plugin install ai-dlc-skills@ai-dlc
 ```
 

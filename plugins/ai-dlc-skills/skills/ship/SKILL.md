@@ -7,7 +7,7 @@ tags: [aidlc, orchestrator, validate, ship]
 requires: []
 author: Melissa Benua
 created_at: 2026-04-12
-updated_at: 2026-06-09
+updated_at: 2026-06-15
 ---
 
 # /ship — Validate phase orchestrator
@@ -32,7 +32,7 @@ Canonical definition: **`docs/AIDLC.md`** in the consumer workspace — Validate
 ## Orchestration
 
 1. **Deploy / CI gate (when consumer requires post-merge validation):** Confirm required deploy and smoke workflows succeeded before exercising the app. On failure → Validate FAIL; do not browser-test a broken deploy.
-2. **UI validation (when Product Spec or Tech Spec has UI criteria):** Follow **[docs/INTERACTIVE-UI-VALIDATION.md](../../docs/INTERACTIVE-UI-VALIDATION.md)** against the consumer’s staging or local URL from **`AGENTS.md`**. Screenshot evidence for blocking mismatches.
+2. **UI validation (when Product Spec or Tech Spec has UI criteria):** Run **`git-worktree-port-registry`** for the slug when validating locally in a worktree (or confirm ports in `AIDLC.md` / `.aidlc/dev.env`). Follow **[docs/INTERACTIVE-UI-VALIDATION.md](../../docs/INTERACTIVE-UI-VALIDATION.md)** — resolve local URL per § Local URL resolution (per worktree); use staging URL from **`AGENTS.md`** when validating deployed environments. Screenshot evidence for blocking mismatches.
 3. **Scorecard:** For each success criterion in the Product Spec, record pass/fail and evidence. Default **90%** gate per AIDLC — document if the team uses another threshold.
 4. **On failure:** Cite criteria, evidence, and **which phase to return to** (Plan, Design, Build, Test, Review) per AIDLC.
 5. **On PASS:** Close or update trackers per consumer **`AGENTS.md`**. **Do not** write ADRs or run Learn here — hand off to **`/learn`**.

@@ -7,7 +7,7 @@ tags: [aidlc, orchestrator, review, test, pr]
 requires: []
 author: Melissa Benua
 created_at: 2026-04-12
-updated_at: 2026-06-09
+updated_at: 2026-06-15
 ---
 
 # /review — Test gate + Review (phase orchestrator)
@@ -64,9 +64,10 @@ Run each pass **as if** a separate reviewer; consolidate only at the end for the
 **Trigger** if the PR touches frontend paths (e.g. Website, Razor, wwwroot, CSS/JS, SPA) or **Tech Spec** lists UI acceptance criteria.
 
 1. Apply **`frontend-web`** ([skills/frontend-web/SKILL.md](../frontend-web/SKILL.md)) for code patterns, accessibility basics, and alignment with stated UI/UX in the Tech Spec.
-2. **UI validation** (not the Validate phase): follow **[docs/INTERACTIVE-UI-VALIDATION.md](../../docs/INTERACTIVE-UI-VALIDATION.md)** — **Chrome DevTools MCP** end-to-end; **`take_screenshot`** for blocking UX/spec mismatches. Environments from consumer **`AGENTS.md` → UI validation environments**.
-3. If Chrome DevTools MCP is unavailable: **blocking** finding — *Chrome DevTools MCP not loaded*; do not claim PASS from code review or Playwright CI alone.
-4. **Output:** PR comment `AIDLC Review — Frontend/UX` + section in `review-report.md`. Omit only if UI is out of scope — state **N/A** in a short comment or skip with explanation on the PR.
+2. **Port registry (worktree):** ensure **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../git-worktree-port-registry/SKILL.md)) has run for the slug — or confirm ports exist in `feature/<slug>/AIDLC.md` and **`.aidlc/dev.env`**. Start local dev on the allocated port when validating locally.
+3. **UI validation** (not the Validate phase): follow **[docs/INTERACTIVE-UI-VALIDATION.md](../../docs/INTERACTIVE-UI-VALIDATION.md)** — **Chrome DevTools MCP** end-to-end; **`take_screenshot`** for blocking UX/spec mismatches. Resolve local URL per [INTERACTIVE-UI-VALIDATION.md](../../docs/INTERACTIVE-UI-VALIDATION.md) § Local URL resolution (per worktree).
+4. If Chrome DevTools MCP is unavailable: **blocking** finding — *Chrome DevTools MCP not loaded*; do not claim PASS from code review or Playwright CI alone.
+5. **Output:** PR comment `AIDLC Review — Frontend/UX` + section in `review-report.md`. Omit only if UI is out of scope — state **N/A** in a short comment or skip with explanation on the PR.
 
 ### 5. Security review (lightweight, obvious issues)
 

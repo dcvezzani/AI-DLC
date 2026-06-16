@@ -38,7 +38,7 @@ Canonical process: **`docs/AIDLC.md`** in the consumer workspace — Learn secti
 2. **Repo documentation** — README, `docs/`, context maps affected by the change.
 3. **Retrospective notes** — append to Tech Spec(s): what differed from plan and why.
 4. **Process friction** — brief note if AIDLC gates were painful (feeds process improvement).
-5. **Git worktree cleanup** — run **`git-worktree-cleanup`** for the specified slug ([skills/git-worktree-cleanup/SKILL.md](../git-worktree-cleanup/SKILL.md)); record results in **`learn-notes.md`** → **Git hygiene**. Skip if PR not merged; do not force-remove dirty worktrees without human approval.
+5. **Git worktree cleanup** — run **`git-worktree-cleanup`** for the specified slug ([skills/git-worktree-cleanup/SKILL.md](../git-worktree-cleanup/SKILL.md)); removes worktree, branch, and **port registry** rows in `aidlc-ports.sqlite`. Record results in **`learn-notes.md`** → **Git hygiene**. Skip if PR not merged; do not force-remove dirty worktrees without human approval.
 
 Adapt **`agent-learn`** output paths to the consumer repo (`AGENTS.md` may override generic `PROJECT.md` expectations).
 
@@ -48,6 +48,7 @@ Adapt **`agent-learn`** output paths to the consumer repo (`AGENTS.md` may overr
 - Documentation PR or commit
 - Close or update parent work item per consumer **`AGENTS.md`**
 - Feature worktree removed (or documented as N/A / skipped with reason)
+- Port registry rows for slug removed (or N/A)
 
 ## Do not
 

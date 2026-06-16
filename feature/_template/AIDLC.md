@@ -7,6 +7,10 @@
 | **Branch** | `feature/<slug>` |
 | **Worktree** | `/absolute/path/to/<repo>-worktrees/<slug>` |
 | **PR target** | `main` (or parent integration branch) |
+| **App port** | *(filled by `git-worktree-port-registry`)* |
+| **API port** | *(filled by `git-worktree-port-registry`)* |
+| **Debug port** | *(filled by `git-worktree-port-registry`)* |
+| **Dev env file** | `.aidlc/dev.env` |
 
 ## Phase commands
 
@@ -14,10 +18,14 @@
 |-------|--------|---------|
 | Plan | | `/plan <slug>` |
 | Design | | `/design <slug>` |
-| Build | | `/build <slug>` |
+| Build | | `/build <slug>` — runs **`git-worktree-port-registry`** before local dev/tests |
 | Review | | `/review <slug>` |
 | Ship | | `/ship <slug>` |
 | Learn | | `/learn <slug>` — runs **`git-worktree-cleanup`** after merged PR |
+
+## Ports registry
+
+Parallel worktrees share **`../<repo>-worktrees/aidlc-ports.sqlite`**. Ports are allocated per slug by **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../../skills/git-worktree-port-registry/SKILL.md)). Load **`.aidlc/dev.env`** before `npm run dev` or integration tests.
 
 ## File ownership
 

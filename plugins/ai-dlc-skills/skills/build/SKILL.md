@@ -38,11 +38,12 @@ Do **not** stop at “branch only”, “uncommitted locally”, or “say if yo
 ## Orchestration — initial implementation
 
 1. **Branch:** use a descriptive branch (e.g. `feature/<slug>`). Apply **`git-workflow`** ([skills/git-workflow/SKILL.md](../git-workflow/SKILL.md)). Read `feature/<slug>/AIDLC.md` or consumer **`AGENTS.md`** for integration base branch (e.g. `main` vs parent epic branch).
-2. **Implement by Tech Spec section:** in PR/commits, reference which section you are implementing (AIDLC Build guidance).
-3. **TDD:** for each unit of work, prefer **test first or alongside** — frontend (`npm test` / vitest as applicable), backend (`dotnet test`, etc.). Load **`testing`** ([skills/testing/SKILL.md](../testing/SKILL.md)); use **`frontend-web`** for UI, **`backend-saas`** for API layers.
-4. **Do not** “finish code” and add tests only at the end unless the Tech Spec explicitly sequenced an exception.
-5. **Run the [Build completion checklist](#build-completion-checklist-mandatory)** — Build is **not complete** until every step passes.
-6. **Local checks** before push; treat **remote CI** as authoritative for handoff to Test/Review.
+2. **Worktree ports (when parallel):** run **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../git-worktree-port-registry/SKILL.md)) for the slug before local dev or integration tests. Load **`.aidlc/dev.env`** (consumer `dev:aidlc` or `set -a && . ./.aidlc/dev.env`). Skip when single-checkout repo with no worktree.
+3. **Implement by Tech Spec section:** in PR/commits, reference which section you are implementing (AIDLC Build guidance).
+4. **TDD:** for each unit of work, prefer **test first or alongside** — frontend (`npm test` / vitest as applicable), backend (`dotnet test`, etc.). Load **`testing`** ([skills/testing/SKILL.md](../testing/SKILL.md)); use **`frontend-web`** for UI, **`backend-saas`** for API layers.
+5. **Do not** “finish code” and add tests only at the end unless the Tech Spec explicitly sequenced an exception.
+6. **Run the [Build completion checklist](#build-completion-checklist-mandatory)** — Build is **not complete** until every step passes.
+7. **Local checks** before push; treat **remote CI** as authoritative for handoff to Test/Review.
 
 ## Build completion checklist (mandatory)
 
@@ -50,7 +51,7 @@ Execute **in order**. Do not declare Build complete, update `feature/README.md` 
 
 | Step | Action | Done when |
 |------|--------|-----------|
-| 1 | Local **build + tests** pass | Required project commands green (e.g. `npm test`, `npm run build`) |
+| 1 | Local **build + tests** pass | Required project commands green; load `.aidlc/dev.env` when in a worktree |
 | 2 | **Commit** all implementation + spec/doc updates on the feature branch | Working tree clean; use consumer `git-commit.sh` if the repo has one |
 | 3 | **Push** branch | `git push -u origin HEAD` (or push from the feature worktree) |
 | 4 | **Open PR** if none exists | `gh pr create` or GitHub MCP — see [Opening the PR](#opening-the-pr) |

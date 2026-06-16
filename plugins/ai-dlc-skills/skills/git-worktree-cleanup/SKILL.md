@@ -1,9 +1,9 @@
 ---
 name: git-worktree-cleanup
 description: >-
-  Remove a feature git worktree and prune its local branch by feature slug.
-  Use after a merged PR, during /learn, or when the user asks to clean up a
-  worktree for a slug.
+  Remove a feature git worktree, prune its local branch, and release port
+  registry rows by feature slug. Use after a merged PR, during /learn, or when
+  the user asks to clean up a worktree for a slug.
 type: skill
 aidlc_phases: [validate]
 tags: [git, worktree, cleanup, learn, hygiene]
@@ -88,6 +88,13 @@ git branch -vv | awk '/: gone]/{print $1}' | while read -r b; do
 done
 # Or target discovered branch explicitly:
 # git branch -d "<branch>"   # use -D only with human confirmation if -d fails
+
+# 6. Port registry cleanup (when DB exists)
+REGISTRY_DB="<parent>/aidlc-ports.sqlite"   # from AGENTS.md or default
+if [ -f "$REGISTRY_DB" ]; then
+  sqlite3 "$REGISTRY_DB" "PRAGMA foreign_keys = ON; DELETE FROM worktrees WHERE slug = '$SLUG';"
+fi
+# CASCADE removes ports rows for this slug only
 ```
 
 Report a short summary:
@@ -95,6 +102,7 @@ Report a short summary:
 - Slug
 - Worktree path removed (or `N/A`)
 - Branch pruned (or skipped + reason)
+- Port registry rows removed (or `N/A` — no DB / slug not registered)
 - Merged PR link (if verified via `gh`)
 
 ## Safety rules
@@ -104,6 +112,16 @@ Report a short summary:
 - `git branch -D` only when `-d` fails **and** human confirms squash-merge or intentional discard
 - Do **not** delete the **remote** branch on GitHub — that stays merge UI / `gh` policy
 - Do **not** remove worktrees for **other slugs** in the same run
+- Do **not** delete port registry rows for **other slugs** — match `slug` and discovered `worktree_path` before `DELETE`
+
+## Port registry cleanup
+
+After worktree removal, delete the slug’s rows from **`aidlc-ports.sqlite`** (see [git-worktree-port-registry](../git-worktree-port-registry/SKILL.md)):
+
+- DB path: `AGENTS.md` → **Port registry** or default `../<repo>-worktrees/aidlc-ports.sqlite`
+- `DELETE FROM worktrees WHERE slug = '<slug>'` (CASCADE removes `ports` rows)
+- Skip if DB missing or slug was never registered — not an error
+- Record result in **`learn-notes.md`** → **Git hygiene** (Ports row)
 
 ## What this does not do
 
@@ -122,5 +140,6 @@ When called from **`/learn`**, append to `feature/<slug>/learn-notes.md`:
 |------|--------|
 | Worktree | `<path>` removed / N/A |
 | Branch | `<branch>` pruned / skipped — reason |
+| Ports | registry rows removed / N/A |
 | PR | <merged PR URL> |
 ```

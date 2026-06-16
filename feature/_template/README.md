@@ -2,7 +2,7 @@
 
 Some repos add **`feature/_template/`** with empty or partial `product-spec.md` / `tech-spec.md` files so **`/plan`** (Product) and **`/design`** (Tech Spec) can copy a folder in one step.
 
-Optional **`AIDLC.md`** records **Branch** and **Worktree** paths for parallel Build and **`/learn`** cleanup — see [AIDLC.md](./AIDLC.md).
+Optional **`AIDLC.md`** records **Branch**, **Worktree**, and **port** assignments for parallel Build and **`/learn`** cleanup — see [AIDLC.md](./AIDLC.md).
 
 In **this** repository, the canonical templates live under:
 

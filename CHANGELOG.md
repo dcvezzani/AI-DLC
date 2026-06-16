@@ -6,12 +6,18 @@ All notable changes to the AI-DLC skills and docs library.
 
 ### Added
 
+- **`skills/git-worktree-port-registry/SKILL.md`** — SQLite port registry per slug/worktree; writes `.aidlc/dev.env`
 - **`skills/git-worktree-cleanup/SKILL.md`** — standalone skill: remove worktree + prune branch by feature slug
 - **`feature/_template/AIDLC.md`** — Branch + Worktree metadata for parallel Build and Learn cleanup
 - **Git worktree cleanup in `/learn`** — `skills/learn/SKILL.md`, `skills/agents/agent-learn/SKILL.md`, `skills/git-workflow/SKILL.md` § Worktree lifecycle
-- **`docs/CONSUMER-SETUP.md`** § Git worktrees (AIDLC) — optional `AGENTS.md` block and conventions
+- **`docs/CONSUMER-SETUP.md`** § Git worktrees (AIDLC) — optional `AGENTS.md` block, port registry, consumer checklist
 
 ### Changed
+
+- **`feature/_template/AIDLC.md`** — app/api/debug port rows and dev env file path
+- **`docs/INTERACTIVE-UI-VALIDATION.md`** — per-worktree local URL resolution from ports
+- **`skills/build/SKILL.md`**, **`skills/review/SKILL.md`**, **`skills/ship/SKILL.md`** — integrate port registry before local dev/UI validation
+- **`skills/git-worktree-cleanup/SKILL.md`** — release port registry rows on Learn cleanup
 
 - **`docs/templates/AIDLC.md`** — Learn responsibilities and success criteria include worktree/branch hygiene
 - **`skills/learn/SKILL.md`** — orchestration step 5; `requires: [git-worktree-cleanup]`

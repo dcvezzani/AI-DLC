@@ -109,6 +109,7 @@ Rules:
 | `ship` | skill | validate | AIDLC Validate phase orchestrator (`/ship`) — scorecard; UI validation via INTERACTIVE-UI-VALIDATION doc |
 | `learn` | skill | validate | AIDLC Learn orchestrator (`/learn`) — after Validate PASS; ADRs, docs, retro, git worktree cleanup |
 | `git-worktree-cleanup` | skill | validate | Remove feature git worktree + prune local branch by slug; used by `/learn` or standalone post-merge |
+| `git-worktree-port-registry` | skill | build, review, validate | Allocate app/api/debug ports per slug; SQLite registry + `.aidlc/dev.env` for parallel worktrees |
 | `architecture` | skill | build, review | Apply software architecture best practices and design patterns |
 | `backend-saas` | skill | design, build | SaaS backend development patterns including API design and multi-tenancy |
 | `blog-writing` | skill | plan | Write blog posts in Melissa Benua's voice and style |

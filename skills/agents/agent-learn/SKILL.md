@@ -76,7 +76,7 @@ If the AIDLC process itself had friction during this cycle, note it in a brief s
 
 ### 6. Git Worktree and Branch Cleanup (When Applicable)
 
-After the feature PR is **merged** and Validate has **PASS**, remove git worktrees tied to the **current/specified feature slug**. Run **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../../git-worktree-cleanup/SKILL.md)) — discovery, preconditions, commands, and safety rules live there. Record results in **`learn-notes.md`** → **Git hygiene**.
+After the feature PR is **merged** and Validate has **PASS**, remove git worktrees tied to the **current/specified feature slug**. Run **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../../git-worktree-cleanup/SKILL.md)) — discovery, preconditions, worktree/branch removal, and **port registry** cleanup live there. Record results in **`learn-notes.md`** → **Git hygiene**.
 
 ## Output Format
 
@@ -92,4 +92,4 @@ docs(learn): capture learnings from Feature #<N> — <title>
 - A new agent starting a session and reading only PROJECT.md would have enough context to understand what exists, where it runs, and what decisions were made
 - No stale information remains from before the feature was implemented
 - ADRs, if written, are self-contained and don't require reading the full PR history to understand
-- Git hygiene is completed or explicitly documented as N/A / skipped with reason in learn-notes
+- Git hygiene is completed or explicitly documented as N/A / skipped with reason in learn-notes (worktree, branch, port registry)

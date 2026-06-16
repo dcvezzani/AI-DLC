@@ -158,6 +158,10 @@ git worktree add <path> -b <branch> <base-branch>
 
 See [skills/build/SKILL.md](../build/SKILL.md) for PR requirements. Worktree creation is **not** required for every feature.
 
+### Allocate ports at Build
+
+Run **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../git-worktree-port-registry/SKILL.md)) for the slug when using parallel worktrees — before local dev, integration tests, or UI validation. Writes `aidlc-ports.sqlite`, updates `feature/<slug>/AIDLC.md`, and **`.aidlc/dev.env`**.
+
 ### Discover path and branch
 
 See **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../git-worktree-cleanup/SKILL.md) § Discovery).

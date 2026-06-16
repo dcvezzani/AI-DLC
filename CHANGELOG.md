@@ -14,6 +14,9 @@ All notable changes to the AI-DLC skills and docs library.
 
 ### Changed
 
+- **`skills/git-worktree-cleanup/SKILL.md`** — step 4b orphan shell cleanup when `git worktree remove` leaves checkout dir (e.g. `.vite/` cache); report distinguishes Git unregistration vs directory removal
+- **`docs/CONSUMER-SETUP.md`** — note that Learn cleanup may need orphan directory removal; AGENTS.md template line for `.vite` leftovers
+
 - **`skills/plan/SKILL.md`**, **`skills/design/SKILL.md`** — consumer worktree pre-flight when `AGENTS.md` documents git worktrees; `requires: [git-workflow]`; Plan creates worktree + `AIDLC.md` at Plan start
 - **`docs/CONSUMER-SETUP.md`**, **`skills/git-workflow/SKILL.md`** — `/plan` creates worktree when consumer documents the pattern; Build worktree step is fallback only
 

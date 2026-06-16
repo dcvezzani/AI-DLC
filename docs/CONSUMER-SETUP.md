@@ -79,7 +79,7 @@ Optional — use when **parallel Build** runs on child units in separate checkou
 
 **Allocate ports at Build:** run **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../skills/git-worktree-port-registry/SKILL.md)) for the slug — writes shared SQLite registry, updates `AIDLC.md` port rows, and **`.aidlc/dev.env`** in the worktree.
 
-**Remove at Learn:** `/learn` runs **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../skills/git-worktree-cleanup/SKILL.md)) for the slug after the feature PR is merged (worktree, branch, and port registry rows).
+**Remove at Learn:** `/learn` runs **`git-worktree-cleanup`** ([skills/git-worktree-cleanup/SKILL.md](../skills/git-worktree-cleanup/SKILL.md)) for the slug after the feature PR is merged (worktree, branch, and port registry rows). `git worktree remove` may leave the slug checkout folder when dev caches (e.g. `.vite/`) remain — the skill removes that orphan shell when Git no longer lists the path.
 
 ```markdown
 ## Git worktrees (AIDLC)
@@ -93,6 +93,8 @@ Optional — use when **parallel Build** runs on child units in separate checkou
 | **Port base** | `18000` (optional; default in skill) |
 | **Ports per slug** | `10` (optional block stride) |
 | **Learn cleanup** | `/learn` or **`git-worktree-cleanup`** — [skills/git-worktree-cleanup/SKILL.md](../skills/git-worktree-cleanup/SKILL.md) |
+
+`git worktree remove` may leave an empty slug folder if dev caches (e.g. `.vite/`) exist; `/learn` should delete the orphan directory when Git no longer lists it.
 
 ### Port role mapping
 

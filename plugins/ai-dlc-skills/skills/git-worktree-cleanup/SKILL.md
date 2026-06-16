@@ -10,7 +10,7 @@ tags: [git, worktree, cleanup, learn, hygiene]
 requires: []
 author: Melissa Benua
 created_at: 2026-06-15
-updated_at: 2026-06-15
+updated_at: 2026-06-16
 ---
 
 # Git worktree cleanup (by slug)
@@ -78,9 +78,17 @@ git -C "<path>" status --short   # if dirty, stop and ask human before --force
 # 3. Prune remote-tracking refs
 git fetch --prune
 
-# 4. Remove worktree
+# 4. Remove worktree (unregisters Git metadata; may leave checkout dir — see 4b)
 git worktree remove "<path>"
 # git worktree remove --force "<path>"   # only if dirty AND human approved
+
+# 4b. Orphan shell cleanup (when path still exists but git worktree list omits it)
+if [ -d "<path>" ] && ! git worktree list --porcelain | grep -qF "<path>"; then
+  # List remaining contents; remove only when safe artifacts remain
+  # Safe: .vite/, node_modules/, .aidlc/, dist/, dist-ssr/, empty
+  # If unexpected source or tracked-looking files remain — stop and ask human (no blind rm -rf)
+  rm -rf "<path>"   # only after verifying safe contents above
+fi
 
 # 5. Prune local branch when remote is gone
 git branch -vv | awk '/: gone]/{print $1}' | while read -r b; do
@@ -100,10 +108,23 @@ fi
 Report a short summary:
 
 - Slug
-- Worktree path removed (or `N/A`)
+- **Git worktree** — unregistered via `git worktree remove` (or `N/A`)
+- **Checkout directory** — removed in step 4b / already gone / skipped — reason (e.g. unexpected files remain)
 - Branch pruned (or skipped + reason)
 - Port registry rows removed (or `N/A` — no DB / slug not registered)
 - Merged PR link (if verified via `gh`)
+
+### Orphan shell cleanup (step 4b)
+
+`git worktree remove` drops `.git/worktrees/<name>/` registration and Git-managed files. If **untracked or ignored** artifacts remain (common: `.vite/deps/` after `npm run dev:aidlc`), Git **does not** delete the checkout directory — expected behavior, not a failed remove.
+
+After step 4, when `<path>` still exists **and** `git worktree list` no longer includes `<path>`:
+
+1. List remaining contents (`find "<path>" -maxdepth 2` or `ls -la`).
+2. If **only** safe artifacts remain — `.vite/`, `node_modules/`, `.aidlc/`, `dist/`, `dist-ssr/`, or empty — run `rm -rf "<path>"`.
+3. If unexpected source, config, or tracked-looking files remain — **stop and ask the human**; do not blind `rm -rf`.
+
+Optionally stop a background dev server in the worktree before step 4 to reduce races (`.vite` may still remain after stop).
 
 ## Safety rules
 
@@ -138,7 +159,8 @@ When called from **`/learn`**, append to `feature/<slug>/learn-notes.md`:
 
 | Item | Result |
 |------|--------|
-| Worktree | `<path>` removed / N/A |
+| Git worktree | `<path>` unregistered / N/A |
+| Checkout directory | `<path>` removed / already gone / skipped — reason |
 | Branch | `<branch>` pruned / skipped — reason |
 | Ports | registry rows removed / N/A |
 | PR | <merged PR URL> |

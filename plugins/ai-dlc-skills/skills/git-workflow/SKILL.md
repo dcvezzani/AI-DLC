@@ -29,6 +29,8 @@ updated_at: 2026-06-15
 
 ## Success Criteria
 
+### Always (any commit or handoff)
+
 Changes are considered successful when ALL of the following are met:
 
 1. **Requirements satisfied** - original task goals are achieved
@@ -39,6 +41,16 @@ Changes are considered successful when ALL of the following are met:
 6. **Complete changes** - no partial or incomplete modifications
 7. **Dependencies included** - all necessary imports and packages added
 8. **Documentation updated** - relevant docs reflect the changes
+
+### Build phase (`/build`) — additional bar
+
+Per [skills/build/SKILL.md](../build/SKILL.md) and consumer `docs/AIDLC.md` Phase 3:
+
+9. **Committed and pushed** on a feature branch (not only local or uncommitted)
+10. **Open pull request** exists targeting the integration branch (`main`, `develop`, or parent epic branch per repo)
+11. **CI green** — required status checks passing on the PR’s latest commit
+
+**Branch only** or **local tests only** does **not** satisfy Build. Invoking `/build` authorizes commit, push, and PR creation for that feature.
 
 ### Language-Specific Checks
 
@@ -112,8 +124,9 @@ Cursor-Task: Optimize ECS resource allocation"
 ## Tools
 
 - Prefer git command line for operations
-- Use GitHub MCP for creating pull requests when available
-- If MCP isn't working, prompt the user for next steps
+- **Pull requests:** use `gh pr create` / `gh pr view` / `gh pr checks` during **`/build`** (see [skills/build/SKILL.md](../build/SKILL.md) § Build completion checklist)
+- GitHub MCP is an alternative when `gh` is unavailable
+- If both fail (auth, network), report the blocker and the exact `gh pr create` command — do **not** treat “ask the user to open a PR” as Build complete
 
 ## Pre-Commit Checklist
 

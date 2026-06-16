@@ -15,7 +15,8 @@ All notable changes to the AI-DLC skills and docs library.
 
 - **`docs/templates/AIDLC.md`** — Learn responsibilities and success criteria include worktree/branch hygiene
 - **`skills/learn/SKILL.md`** — orchestration step 5; `requires: [git-worktree-cleanup]`
-- **`skills/git-workflow/SKILL.md`** — remove/discover delegated to `git-worktree-cleanup`
+- **`skills/git-workflow/SKILL.md`** — remove/discover delegated to `git-worktree-cleanup`; Build-phase PR + CI success criteria; `gh pr create` preferred over “prompt user”
+- **`skills/build/SKILL.md`** — mandatory Build completion checklist (commit → push → PR → green CI); `/build` authorizes git/PR ops; do not mark Build complete without PR URL
 
 ## [1.0.0] — 2026-06-09
 

@@ -102,8 +102,8 @@ Rules:
 
 | Name | Type | AIDLC Phases | Description |
 |---|---|---|---|
-| `plan` | skill | plan | AIDLC Plan (`/plan`) — Product Spec in `feature/<slug>/`, conversation-first, human approval |
-| `design` | skill | design | AIDLC Design (`/design`) — Tech Spec + review passes; requires approved Product Spec; gate before `/build` |
+| `plan` | skill | plan | AIDLC Plan (`/plan`) — Product Spec on feature branch; worktree + `AIDLC.md` when consumer documents git worktrees; human approval |
+| `design` | skill | design | AIDLC Design (`/design`) — Tech Spec in feature worktree; review passes; requires approved Product Spec; gate before `/build` |
 | `build` | skill | build, test | AIDLC Build + Test (`/build`) — open PR + green CI; TDD; PR triage after `/review` |
 | `review` | skill | review, test | AIDLC Test gate + Review orchestrator (`/review`) — five PR comment dimensions |
 | `ship` | skill | validate | AIDLC Validate phase orchestrator (`/ship`) — scorecard; UI validation via INTERACTIVE-UI-VALIDATION doc |

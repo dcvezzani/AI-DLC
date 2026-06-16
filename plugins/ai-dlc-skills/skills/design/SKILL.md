@@ -1,13 +1,13 @@
 ---
 name: design
-description: AIDLC Design phase — Tech Spec under feature/<slug>/, review passes, human gate before /build. Requires an approved Product Spec (run /plan first or confirm approval in-thread).
+description: AIDLC Design phase — Tech Spec under feature/<slug>/ in the feature worktree; review passes, human gate before /build. Requires approved Product Spec (run /plan first or confirm approval in-thread).
 type: skill
 aidlc_phases: [design]
-tags: [aidlc, orchestrator, design, tech-spec, specs]
-requires: []
+tags: [aidlc, orchestrator, design, tech-spec, specs, worktree]
+requires: [git-workflow]
 author: Melissa Benua
 created_at: 2026-04-20
-updated_at: 2026-06-15
+updated_at: 2026-06-16
 ---
 
 # /design — Design (Tech Spec)
@@ -16,14 +16,19 @@ You are the **phase orchestrator** for AIDLC **Design** (Tech Spec). Ground trut
 
 **Plan (Product Spec)** is **`/plan`** ([skills/plan/SKILL.md](../plan/SKILL.md)). This skill assumes **Product Spec is approved** (or the user explicitly approves proceeding in the current thread).
 
-**Library skills** — [docs/SKILLS.md](../../docs/SKILLS.md); resolve from your install or `.claude/skills/<bundle>/`.
+**Library skills** — [docs/SKILLS.md](../../docs/SKILLS.md); resolve from your install or `.claude/skills/<bundle>/`. Apply **`git-workflow`** ([skills/git-workflow/SKILL.md](../git-workflow/SKILL.md)) for branches and worktree lifecycle.
 
 ## Before you start
 
 1. Resolve **feature slug** from `$ARGUMENTS` or from the same folder the team used for `/plan`.
-2. **Read `feature/<slug>/product-spec.md`**. If it is missing or clearly not approved, **stop** and ask the human to run **`/plan`** or confirm approval — do not invent product scope.
-3. Ensure `feature/<slug>/` exists. If `tech-spec.md` is missing, create it from **[`tech-spec-template.md`](../spec-management/templates/tech-spec-template.md)**.
-4. Link the work to the same **parent work item** as `/plan` (per **`AGENTS.md` → Issue tracker (AIDLC)**). When updating GitHub issue bodies, use **`blob/<branch>/…`** spec links per [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md). For GitHub-only automation, see [GITHUB-AIDLC-PROJECT.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-AIDLC-PROJECT.md). Portability: [ISSUE-TRACKER-PORTABILITY.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/ISSUE-TRACKER-PORTABILITY.md).
+2. **Consumer worktree pre-flight** — when **`AGENTS.md` → Git worktrees (AIDLC)** is documented (or `feature/<slug>/AIDLC.md` exists), continue in the **same feature worktree and branch** as `/plan`:
+   - Read **`feature/<slug>/AIDLC.md`** for **Worktree** and **Branch**; confirm `git rev-parse --show-toplevel` matches the worktree path (or switch/open that workspace).
+   - If the worktree is missing but Plan should have created it, run the same `git worktree add` flow as **`/plan`** ([skills/plan/SKILL.md](../plan/SKILL.md) § Consumer worktree pre-flight) from the parent checkout — do not draft `tech-spec.md` on `main`.
+   - Update **`AIDLC.md`** (issue link, PR target, notes) as needed; commit on the feature branch when the human asks.
+   - When **`AGENTS.md` has no worktree block:** work on the feature branch from `/plan` in a single checkout.
+3. **Read `feature/<slug>/product-spec.md`**. If it is missing or clearly not approved, **stop** and ask the human to run **`/plan`** or confirm approval — do not invent product scope.
+4. Ensure `feature/<slug>/` exists. If `tech-spec.md` is missing, create it from **[`tech-spec-template.md`](../spec-management/templates/tech-spec-template.md)**.
+5. Link the work to the same **parent work item** as `/plan` (per **`AGENTS.md` → Issue tracker (AIDLC)**). When updating GitHub issue bodies, use **`blob/<branch>/…`** spec links per [GITHUB-ISSUE-SPEC-LINKS.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-ISSUE-SPEC-LINKS.md). For GitHub-only automation, see [GITHUB-AIDLC-PROJECT.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/GITHUB-AIDLC-PROJECT.md). Portability: [ISSUE-TRACKER-PORTABILITY.md](https://github.com/dcvezzani/AI-DLC/blob/main/docs/ISSUE-TRACKER-PORTABILITY.md).
 
 ## Orchestration — Tech Spec (`tech-spec.md`)
 
@@ -49,3 +54,4 @@ You are the **phase orchestrator** for AIDLC **Design** (Tech Spec). Ground trut
 
 - Do not reopen settled Product decisions in the Tech Spec without flagging a **change request** to Product.
 - **Conversation first** for technical ambiguities — same rhythm as `docs/AIDLC.md` orchestration model.
+- **Never commit directly to `main`** — see **`git-workflow`** § Branch Protection.

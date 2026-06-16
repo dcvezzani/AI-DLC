@@ -73,9 +73,9 @@ Dual-tracker pattern (common): **Linear** (or Jira) = product backlog; **GitHub 
 
 Optional — use when **parallel Build** runs on child units in separate checkouts. Single-checkout repos can omit this block; `/learn` will record `N/A` for worktree cleanup.
 
-**Record at Plan or Design:** copy [feature/_template/AIDLC.md](../feature/_template/AIDLC.md) to `feature/<slug>/AIDLC.md` with absolute **Worktree** path and **Branch** name.
+**Record at Plan or Design:** copy [feature/_template/AIDLC.md](../feature/_template/AIDLC.md) to `feature/<slug>/AIDLC.md` with absolute **Worktree** path and **Branch** name. **`/plan`** creates the worktree when this block is present (see [skills/plan/SKILL.md](../skills/plan/SKILL.md) § Consumer worktree pre-flight).
 
-**Create at Build (optional):** `git worktree add <path> -b <branch> <base>` — see [skills/build/SKILL.md](../skills/build/SKILL.md).
+**Create at Build (optional):** `git worktree add <path> -b <branch> <base>` — only when Plan did not already create the worktree; see [skills/build/SKILL.md](../skills/build/SKILL.md).
 
 **Allocate ports at Build:** run **`git-worktree-port-registry`** ([skills/git-worktree-port-registry/SKILL.md](../skills/git-worktree-port-registry/SKILL.md)) for the slug — writes shared SQLite registry, updates `AIDLC.md` port rows, and **`.aidlc/dev.env`** in the worktree.
 

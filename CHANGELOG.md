@@ -14,6 +14,9 @@ All notable changes to the AI-DLC skills and docs library.
 
 ### Changed
 
+- **`skills/plan/SKILL.md`**, **`skills/design/SKILL.md`** — consumer worktree pre-flight when `AGENTS.md` documents git worktrees; `requires: [git-workflow]`; Plan creates worktree + `AIDLC.md` at Plan start
+- **`docs/CONSUMER-SETUP.md`**, **`skills/git-workflow/SKILL.md`** — `/plan` creates worktree when consumer documents the pattern; Build worktree step is fallback only
+
 - **`feature/_template/AIDLC.md`** — app/api/debug port rows and dev env file path
 - **`docs/INTERACTIVE-UI-VALIDATION.md`** — per-worktree local URL resolution from ports
 - **`skills/build/SKILL.md`**, **`skills/review/SKILL.md`**, **`skills/ship/SKILL.md`** — integrate port registry before local dev/UI validation

@@ -146,11 +146,11 @@ Optional pattern for **parallel Build** on child units. Single-checkout repos sk
 
 ### Record at Plan or Design
 
-Create `feature/<slug>/AIDLC.md` (copy from [feature/_template/AIDLC.md](../../feature/_template/AIDLC.md)) with **Worktree** (absolute path) and **Branch** rows. Consumer convention: [CONSUMER-SETUP.md](../../docs/CONSUMER-SETUP.md) § Git worktrees.
+Create `feature/<slug>/AIDLC.md` (copy from [feature/_template/AIDLC.md](../../feature/_template/AIDLC.md)) with **Worktree** (absolute path) and **Branch** rows. Consumer convention: [CONSUMER-SETUP.md](../../docs/CONSUMER-SETUP.md) § Git worktrees. **`/plan`** creates the worktree when the consumer documents the pattern ([skills/plan/SKILL.md](../plan/SKILL.md) § Consumer worktree pre-flight).
 
 ### Create at Build (optional)
 
-From the main repo checkout:
+When Plan did **not** already create the worktree (single-checkout repo or no `AGENTS.md` worktree block), from the main repo checkout:
 
 ```bash
 git worktree add <path> -b <branch> <base-branch>
